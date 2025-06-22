@@ -1,0 +1,207 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mr. Volt | Portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+    <nav>
+        <div class="navbar-container">
+            <div class="logo-container">
+                {% comment %} <img src="{% static 'images/vsm_logo.png' %}" alt="VSM Logo" class="vsm-logo" /> {% endcomment %}
+                <span class="vsm-text">VSM</span>
+            </div>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#profile">Home</a>
+                <a href="#about">About Me</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <div class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" role="button" tabindex="0">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Profile Section -->
+        <br>
+        <br>
+        <br>
+        <section class="view-template-container" id="profile" tabindex="-1" aria-label="Profile Section">
+            <div class="heading-box">
+                <span class="heading-letter">P</span>
+                <span class="heading-letter">r</span>
+                <span class="heading-letter">o</span>
+                <span class="heading-letter">f</span>
+                <span class="heading-letter">i</span>
+                <span class="heading-letter">l</span>
+                <span class="heading-letter">e</span>
+            </div>
+            <div class="data-box">
+                <div class="profile-content">
+                    <div class="profile-image">
+                        <img src="{{profile.image }}" alt="Profile Image" />
+                    </div>
+                    <div class="profile-text">
+                        {% for line in profile.text_lines %}
+                            {% if line.bold %}
+                                <p class="bold-line">{{ line.content }}</p>
+                            {% else %}
+                                <p>{{ line.content }}</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="view-template-container" id="about" tabindex="-1" aria-label="About Me Section">
+            <div class="heading-box">
+                <span class="heading-letter">A</span>
+                <span class="heading-letter">b</span>
+                <span class="heading-letter">o</span>
+                <span class="heading-letter">u</span>
+                <span class="heading-letter">t</span>
+                <span class="heading-letter"> </span>
+                <span class="heading-letter">M</span>
+                <span class="heading-letter">e</span>
+            </div>
+            <div class="data-box">
+                <div class="about-content">
+                    <p class="intro-text">{{ intro_text }}</p>
+                    <h3>My Coding Profiles</h3>
+                    <div class="coding-profiles">
+                        {% for profile in coding_profiles %}
+                            <a href="{{ profile.url }}" target="_blank" rel="noopener" class="profile-box">
+                                <img src="{{ profile.logo.url }}" alt="{{ profile.name }}" />
+                                <div class="platform-name" aria-label="{{ profile.name }}">{{ profile.name }}</div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="view-template-container" id="skills" tabindex="-1" aria-label="Skills Section">
+            <div class="heading-box">
+                <span class="heading-letter">S</span>
+                <span class="heading-letter">k</span>
+                <span class="heading-letter">i</span>
+                <span class="heading-letter">l</span>
+                <span class="heading-letter">l</span>
+                <span class="heading-letter">s</span>
+            </div>
+            <div class="data-box">
+                <div class="skills-grid">
+                    {% for skill in skills %}
+                    <div class="skill-card">
+                        {% comment %} <img src="{{skill.image.url}}" alt="{{ skill.name }}" loading="lazy" /> {% endcomment %}
+                        <div class="skill-name">{{ skill.name }}</div>
+                        <div class="skill-category">{{ skill.category }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="view-template-container" id="projects" tabindex="-1" aria-label="Projects Section">
+            <div class="heading-box">
+                <span class="heading-letter">P</span>
+                <span class="heading-letter">r</span>
+                <span class="heading-letter">o</span>
+                <span class="heading-letter">j</span>
+                <span class="heading-letter">e</span>
+                <span class="heading-letter">c</span>
+                <span class="heading-letter">t</span>
+                <span class="heading-letter">s</span>
+            </div>
+            <div class="data-box">
+                <div class="projects-container">
+                    {% for project in projects %}
+                        <a href="{{ project.url }}" target="_blank" rel="noopener" class="project-card" aria-label="Project: {{ project.title }}">
+                            <div class="project-title">{{ project.title }}</div>
+                            <div class="project-description">{{ project.description }}</div>
+                            <div class="project-tech">{{ project.tech_stack }}</div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="view-template-container" id="contact" tabindex="-1" aria-label="Contact Section">
+            <div class="heading-box">
+                <span class="heading-letter">C</span>
+                <span class="heading-letter">o</span>
+                <span class="heading-letter">n</span>
+                <span class="heading-letter">t</span>
+                <span class="heading-letter">a</span>
+                <span class="heading-letter">c</span>
+                <span class="heading-letter">t</span>
+                <span class="heading-letter"> </span>
+                <span class="heading-letter">M</span>
+                <span class="heading-letter">e</span>
+            </div>
+            <div class="data-box">
+                <div class="contact-container">
+                    <div class="contact-left">
+                        <div class="contact-item">
+                            <span> Mobile No : </span>
+                            <img src="{% static 'images/icons/phone.svg' %}" alt="Phone Icon" class="icon" />
+                            <span>{{ contact.phone }}</span>
+                        </div>
+                        <div class="contact-item">
+                            <span> Email id : </span>
+                            <img src="{% static 'images/icons/email.svg' %}" alt="Email Icon" class="icon" />
+                            <span>{{ contact.email }}</span>
+                        </div>
+                    </div>
+                    <div class="contact-right">
+                        <a href="{{ contact.instagram }}" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+                            <img src="{% static 'images/icons/instagram.svg' %}" alt="Instagram Icon" class="icon" />
+                        </a>
+                        <a href="{{ contact.twitter }}" target="_blank" rel="noopener" class="social-link" aria-label="Twitter">
+                            <img src="{% static 'images/icons/twitter.svg' %}" alt="Twitter Icon" class="icon" />
+                        </a>
+                        <a href="{{ contact.linkedin }}" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+                            <img src="{% static 'images/icons/linkedin.svg' %}" alt="LinkedIn Icon" class="icon" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    
+    <script>
+        // Smooth scrolling for nav links
+        document.querySelectorAll('nav .nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                    // Close menu on mobile after click
+                    document.getElementById('navLinks').classList.remove('show');
+                    document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
