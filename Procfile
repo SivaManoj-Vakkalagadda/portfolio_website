@@ -1,1 +1,1 @@
-web: gunicorn sivamanoj_portfolio.wsgi
+web: gunicorn sivamanoj_portfolio.wsgi --log-file -
