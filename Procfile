@@ -1,1 +1,1 @@
-web: gunicorn sivamanoj-vakkalagadda-portfolio.wsgi
+web: gunicorn sivamanoj_portfolio.wsgi
